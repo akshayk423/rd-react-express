@@ -1,22 +1,20 @@
 .page {
   height: 100vh;
-  width: 100%;
-  background-image: url("../assets/background/home-dark.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  width: 100vw;
+  overflow: hidden;
 }
 
-.page__background {
-  height: 100vh;
-  width: 100%;
-  background-image: url("../assets/background/forest.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+.page__content {
+  height: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
+  background-image: url("../../assets/background/forest.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #1E1E1E;
+  padding: 30px 56px;
 }
 
 .page__moon {
@@ -30,25 +28,18 @@
     drop-shadow(0 0 0px rgba(245, 230, 161, 0.25));
 }
 
-<<<<<<< Updated upstream
-.page__title {
-  width: 500px;
-  height: 75px;
-  margin: 70px auto 0;
-=======
 .page__moon:hover {
   transform: scale(1.05);
   filter: drop-shadow(0 0 4px rgba(245, 230, 161, 0.8))
     drop-shadow(0 0 10px rgba(245, 230, 161, 0.4))
     drop-shadow(0 0 20px rgba(255, 245, 200, 0.25));
->>>>>>> Stashed changes
 }
 
 .page__searchbar {
-  background: #FFF;
+  background: #fff;
   width: 700px;
   height: 45px;
-  margin: 170px auto 0;
+  margin: 280px auto 0;
   border-radius: 18px;
   display: flex;
   justify-content: center;
