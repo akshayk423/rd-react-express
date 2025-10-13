@@ -2,6 +2,7 @@ import "./App.css";
 import moon from "../../assets/background/moon.png";
 import plus from "../../assets/icons/plus.svg";
 
+// Components
 import Header from "../Header/Header";
 
 const App = () => {
