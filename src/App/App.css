@@ -15,6 +15,8 @@
   background-size: cover;
   background-position: center;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .page__moon {
@@ -23,8 +25,42 @@
   right: 15px;
 }
 
-.page__tite {
-  position: absolute;
-  top: 65px;
-  margin: auto;
+.page__title {
+  width: 500px;
+  height: 75px;
+  margin: 70px auto 0;
+}
+
+.page__searchbar {
+  background: #FFF;
+  width: 700px;
+  height: 45px;
+  margin: 170px auto 0;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.page__searchbar-input {
+  width: 95%;
+  height: 95%;
+  border: none;
+  border-radius: 18px;
+  padding: 0 0 0 5px;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.page__searchbar-button {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
 }
