@@ -1,5 +1,5 @@
 import "./App.css";
-import moon from "../../assets/background/moon.png";
+import moon from "../../assets/background/night/moon-yellow.svg";
 import plus from "../../assets/icons/plus.svg";
 
 // Components
@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 const App = () => {
   return (
     <div className="page">
-      <div className="page__content">
+      <div className="page__content page__content_night">
         <Header />
         <img src={moon} className="page__moon" />
         <div className="page__searchbar-container">
