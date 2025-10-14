@@ -1,19 +1,38 @@
+//css
 import "./App.css";
-import moon from "../../assets/background/night/moon-yellow.svg";
-import plus from "../../assets/icons/plus.svg";
-import SearchBar from "../SearchBar/SearchBar";
 
 // Components
 import Header from "../Header/Header";
+import SearchBar from "../SearchBar/SearchBar";
+
+//react imports
+import { useState } from "react";
+
+//contexts
+import AppContext from "../../contexts/AppContext.js";
 
 const App = () => {
+  /* state variable for toggling between blood and night theme
+  default theme = night */
+  const [isNight, setIsNight] = useState(true);
+
+  //toggle theme change function
+  const onThemeToggle = () => {
+    setIsNight(!isNight);
+    console.log(isNight);
+  };
+
   return (
     <div className="page">
-      <div className="page__content page__content_night">
-        <Header />
-        <img src={moon} className="page__moon" />
-
-        <SearchBar />
+      <div
+        className={`page__content  ${
+          isNight ? "page__content_night" : "page__content_blood"
+        }`}
+      >
+        <AppContext.Provider value={{ isNight, onThemeToggle }}>
+          <Header />
+          <SearchBar />
+        </AppContext.Provider>
       </div>
     </div>
   );
