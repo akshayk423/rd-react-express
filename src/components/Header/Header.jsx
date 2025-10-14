@@ -1,5 +1,5 @@
-import "./Header.css"
-import title from "../../assets/background/title.png";
+import "./Header.css";
+import title from "../../assets/icons/logo-title.png";
 import avatar from "../../assets/icons/avatar.png";
 
 function Header() {

@@ -10,12 +10,16 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-image: url("../../assets/background/forest.png");
+
+  padding: 30px 56px;
+}
+
+.page__content_night {
+  background-image: url("../../assets/background/night/home-dark.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-color: #1e1e1e;
-  padding: 30px 56px;
 }
 
 .page__moon {
