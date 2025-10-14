@@ -2,6 +2,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  font-family: "Inter", Arial, Helvetica, sans-serif, system-ui;
 }
 
 .page__content {
@@ -13,7 +14,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-color: #1E1E1E;
+  background-color: #1e1e1e;
   padding: 30px 56px;
 }
 
