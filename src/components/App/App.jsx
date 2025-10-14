@@ -23,7 +23,11 @@ const App = () => {
         <img src={moon} className="page__moon" onMouseOver={playHover} />
         <div className="page__searchbar-container">
           <form action="#" className="page__searchbar" method="get">
-            <input className="page__searchbar-input" type="search" />
+            <input
+              className="page__searchbar-input"
+              type="search"
+              placeholder="Type a keyword — slasher, actor, or decade — to summon your next horror recommendation."
+            />
             <button className="page__searchbar-button" type="submit">
               <img src={plus} alt="Plus" />
             </button>

@@ -16,8 +16,10 @@ function Dropdown({ trigger, items }) {
   }, []);
 
   const handleItemClick = (onClick) => {
-    onClick();
-    setOpen(false);
+    if (onClick) {
+      onClick();
+      setOpen(false);
+    }
   };
 
   return (
