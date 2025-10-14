@@ -1,0 +1,27 @@
+.moon-toggle-btn {
+  background: none;
+  border: none;
+  padding: 50px;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.moon-toggle-btn__asset {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: filter 0.6s ease, transform 0.6s ease;
+  filter: drop-shadow(0 0 0px rgba(245, 230, 161, 0.5))
+    drop-shadow(0 0 0px rgba(245, 230, 161, 0.25));
+  display: block;
+}
+
+.moon-toggle-btn:hover .moon-toggle-btn__asset {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 4px rgba(245, 230, 161, 0.8))
+    drop-shadow(0 0 10px rgba(245, 230, 161, 0.4))
+    drop-shadow(0 0 20px rgba(255, 245, 200, 0.25));
+}
