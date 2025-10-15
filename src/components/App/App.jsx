@@ -1,19 +1,19 @@
 //css
 import "./App.css";
 
+//react
+import { useState } from "react";
+
 // Components
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
-
-//react imports
-import { useState } from "react";
+import MoonToggle from "../MoonToggle/MoonToggle";
+import useHoverSounds from "../HoverSounds/UseHoverSounds";
 
 //contexts
 import AppContext from "../../contexts/AppContext.js";
 
 const App = () => {
-  /* state variable for toggling between blood and night theme
-  default theme = night */
   const [isNight, setIsNight] = useState(true);
 
   //toggle theme change function
@@ -25,7 +25,7 @@ const App = () => {
   return (
     <div className="page">
       <div
-        className={`page__content  ${
+        className={`page__content ${
           isNight ? "page__content_night" : "page__content_blood"
         }`}
       >
