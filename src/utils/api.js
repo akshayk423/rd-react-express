@@ -1,3 +1,3 @@
-//Fetch 
-
-//GET request needs to be doneeee
+export function checkResponse(res) {
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+}
