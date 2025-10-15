@@ -1,38 +1,38 @@
-import { useRef } from "react";
-
+//css
 import "./App.css";
-import moon from "../../assets/background/moon.png";
-import plus from "../../assets/icons/plus.svg";
 
-//Audio files
-import hover1 from "../../assets/audio/hover1.wav";
-import hover2 from "../../assets/audio/hover2.wav";
-import hover3 from "../../assets/audio/hover3.wav";
+//react
+import { useState } from "react";
 
 // Components
 import Header from "../Header/Header";
+import SearchBar from "../SearchBar/SearchBar";
+import MoonToggle from "../MoonToggle/MoonToggle";
 import useHoverSounds from "../HoverSounds/UseHoverSounds";
 
+//contexts
+import AppContext from "../../contexts/AppContext.js";
+
 const App = () => {
-  const playHover = useHoverSounds(hover1, hover2, hover3);
+  const [isNight, setIsNight] = useState(true);
+
+  //toggle theme change function
+  const onThemeToggle = () => {
+    setIsNight(!isNight);
+    console.log(isNight);
+  };
 
   return (
     <div className="page">
-      <div className="page__content">
-        <Header />
-        <img src={moon} className="page__moon" onMouseOver={playHover} />
-        <div className="page__searchbar-container">
-          <form action="#" className="page__searchbar" method="get">
-            <input
-              className="page__searchbar-input"
-              type="search"
-              placeholder="Type a keyword — slasher, actor, or decade — to summon your next horror recommendation."
-            />
-            <button className="page__searchbar-button" type="submit">
-              <img src={plus} alt="Plus" />
-            </button>
-          </form>
-        </div>
+      <div
+        className={`page__content ${
+          isNight ? "page__content_night" : "page__content_blood"
+        }`}
+      >
+        <AppContext.Provider value={{ isNight, onThemeToggle }}>
+          <Header />
+          <SearchBar />
+        </AppContext.Provider>
       </div>
     </div>
   );

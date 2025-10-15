@@ -2,6 +2,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  font-family: "Inter", Arial, Helvetica, sans-serif, system-ui;
 }
 
 .page__content {
@@ -9,62 +10,20 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-image: url("../../assets/background/forest.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-color: #1E1E1E;
+  background-color: #1e1e1e;
   padding: 30px 56px;
 }
 
-.page__moon {
-  position: absolute;
-  top: 40px;
-  right: 80px;
-  width: 100px;
-  height: auto;
-  transition: filter 0.6s ease, transform 0.6s ease;
-  filter: drop-shadow(0 0 0px rgba(245, 230, 161, 0.5))
-    drop-shadow(0 0 0px rgba(245, 230, 161, 0.25));
+.page__content_night {
+  background-image: url("../../assets/background/night/home-dark.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-.page__moon:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 4px rgba(245, 230, 161, 0.8))
-    drop-shadow(0 0 10px rgba(245, 230, 161, 0.4))
-    drop-shadow(0 0 20px rgba(255, 245, 200, 0.25));
-}
-
-.page__searchbar {
-  background: #fff;
-  width: 700px;
-  height: 45px;
-  margin: 280px auto 0;
-  border-radius: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
-}
-
-.page__searchbar-input {
-  width: 95%;
-  height: 95%;
-  border: none;
-  border-radius: 18px;
-  padding: 0 0 0 5px;
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.page__searchbar-button {
-  width: 20px;
-  height: 20px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
+.page__content_blood {
+  background-image: url("../../assets/background/blood/home-blood.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
