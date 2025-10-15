@@ -22,6 +22,26 @@
   padding: 0 0 0 5px;
 }
 
+.searchbar__input::placeholder {
+  color: #00000099;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.searchbar__terms {
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+.searchbar__term {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+}
+
 input[type="text"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;

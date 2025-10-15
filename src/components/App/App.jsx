@@ -7,6 +7,7 @@ import { useState } from "react";
 // Components
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
+import Results from "../Results/Results";
 
 //contexts
 import AppContext from "../../contexts/AppContext.js";
@@ -30,6 +31,7 @@ const App = () => {
         <AppContext.Provider value={{ isNight, onThemeToggle }}>
           <Header />
           <SearchBar />
+          <Results />
         </AppContext.Provider>
       </div>
     </div>
