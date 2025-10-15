@@ -62,7 +62,7 @@ const App = () => {
 
     const words = tag.trim().split(/\s+/).filter(Boolean);
 
-    setTagsArray((prevTags) => [ ...prevTags, ...words]);
+    setTagsArray((prevTags) => [...prevTags, ...words]);
     setTag("");
   }
 
@@ -90,7 +90,6 @@ const App = () => {
           <Header />
           <SearchBar />
         </AppContext.Provider>
-
       </div>
     </div>
   );
