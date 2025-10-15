@@ -1,0 +1,70 @@
+.searchbar__form {
+  width: 750px;
+  height: 45px;
+  margin: 280px auto 0;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  padding: 0 10px 0 0;
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* 🌙 Night Mode */
+.searchbar__form_type_night {
+  background: #fff;
+}
+
+.searchbar__input_type_night {
+  color: #000;
+}
+
+.searchbar__input_type_night::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* 🩸 Blood Mode */
+.searchbar__form_type_blood {
+  background: #000;
+  border: 1px solid #fff;
+}
+
+.searchbar__input_type_blood {
+  background: transparent;
+  color: #fff;
+}
+
+.searchbar__input_type_blood::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 🔥 Glowing red when focused */
+.searchbar__form_type_blood:focus-within {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5),
+    0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* 🌕 Soft moonlight glow when focused */
+.searchbar__form_type_night:focus-within {
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.5), 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+/* Base input/button resets */
+.searchbar__input {
+  width: 95%;
+  height: 95%;
+  border: none;
+  border-radius: 18px;
+  padding: 0 0 0 5px;
+  outline: none;
+}
+
+.searchbar__submit {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}

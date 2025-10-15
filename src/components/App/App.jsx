@@ -1,7 +1,7 @@
+//css
 import "./App.css";
 // Components
-import moon from "../../assets/background/moon.png";
-import plus from "../../assets/icons/plus.svg";
+
 import Header from "../Header/Header";
 import MoviePopup from "../MoviePopup/MoviePopup";
 
@@ -67,32 +67,37 @@ const App = () => {
     setMovies((prevMovies) => prevMovies.slice(1));
   }
 
+
+
+// Components
+import SearchBar from "../SearchBar/SearchBar";
+import MoonToggle from "../MoonToggle/MoonToggle";
+import useHoverSounds from "../HoverSounds/UseHoverSounds";
+
+//contexts
+import AppContext from "../../contexts/AppContext.js";
+
+const App = () => {
+  const [isNight, setIsNight] = useState(true);
+
+  //toggle theme change function
+  const onThemeToggle = () => {
+    setIsNight(!isNight);
+    console.log(isNight);
+  };
+
   return (
     <div className="page">
-      <div className="page__content">
-        <Header />
-        <img src={moon} className="page__moon" />
-        <div className="page__searchbar-container">
-          <form className="page__searchbar" onSubmit={handleSearch}>
-            <input
-              className="page__searchbar-input"
-              type="text"
-              value={tag}
-              onChange={(e) => setTag(e.target.value)}
-              placeholder="Search something horror related..."
-            />
-            <button className="page__searchbar-button" type="submit">
-              <img src={plus} alt="Plus" />
-            </button>
-          </form>
-        </div>
-        {movies.length > 0 && (
-          <MoviePopup
-            movies={movies}
-            onDecline={handleDecline}
-            onAccept={handleAccept}
-          />
-        )}
+      <div
+        className={`page__content ${
+          isNight ? "page__content_night" : "page__content_blood"
+        }`}
+      >
+        <AppContext.Provider value={{ isNight, onThemeToggle }}>
+          <Header />
+          <SearchBar />
+        </AppContext.Provider>
+
       </div>
     </div>
   );

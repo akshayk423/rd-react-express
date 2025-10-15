@@ -1,0 +1,77 @@
+.dropdown {
+  position: relative;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown__trigger {
+  cursor: pointer;
+  background: transparent;
+  border-style: none;
+}
+
+.dropdown__menu {
+  position: absolute;
+  left: 24px;
+  top: 56px;
+
+  border: none;
+  border-radius: 21px;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  list-style: none;
+  min-width: 311px;
+  max-height: 92px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  animation: dropdownFade 0.2s ease;
+  gap: 10px;
+}
+
+.dropdown__menu_type_night {
+  background: linear-gradient(180deg, #0a0a0a82 30%, #500000 150%);
+}
+
+.dropdown__menu_type_blood {
+  background: linear-gradient(180deg, #0a0a0a82 30%, #1c1c1c 150%);
+}
+
+.dropdown__item {
+  width: 100%;
+  display: block;
+  padding: 0;
+  margin: 13px auto;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.dropdown__item:hover {
+  cursor: pointer;
+}
+
+/* Divider line between items */
+.dropdown__item + .dropdown__item {
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Hover effect */
+.dropdown__item:hover {
+  opacity: 0.4;
+
+  transition: opacity 0.25s ease;
+}
