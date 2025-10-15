@@ -1,0 +1,42 @@
+/* Correct class name — match your component’s div */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+/* Style for each tag chip */
+.tags-container__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #2c2c2c;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  border-radius: 12px;
+  padding: 6px 12px;
+  transition: opacity 0.2s ease;
+}
+
+.tags-container__tag:hover {
+  opacity: 0.8;
+}
+
+/* Style for the delete button */
+.tags-container__tag-delete-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+/*hover effect on delete */
+.tags-container__tag-delete-btn:hover {
+  color: #ff4444;
+  transform: scale(1.2);
+}
