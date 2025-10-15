@@ -31,7 +31,7 @@ const App = () => {
         <AppContext.Provider value={{ isNight, onThemeToggle }}>
           <Header />
           <SearchBar />
-          <Results />
+          {/* <Results /> */}
         </AppContext.Provider>
       </div>
     </div>
