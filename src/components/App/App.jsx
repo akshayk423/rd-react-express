@@ -1,9 +1,15 @@
 //css
 import "./App.css";
-// Components
 
+// Components
+import SearchBar from "../SearchBar/SearchBar";
+import MoonToggle from "../MoonToggle/MoonToggle";
+import useHoverSounds from "../HoverSounds/UseHoverSounds";
 import Header from "../Header/Header";
 import MoviePopup from "../MoviePopup/MoviePopup";
+
+//Context
+import AppContext from "../../contexts/AppContext.js";
 
 //Utils
 import { apiKey } from "../../utils/constants";
@@ -17,6 +23,7 @@ const App = () => {
   const [tag, setTag] = useState("");
   const [tagsArray, setTagsArray] = useState([]);
   const [movieGenerating, setMovieGenerating] = useState(false);
+  const [isNight, setIsNight] = useState(true);
 
   useEffect(() => {
     if (!tagsArray.length) return;
@@ -67,20 +74,6 @@ const App = () => {
     setMovies((prevMovies) => prevMovies.slice(1));
   }
 
-
-
-// Components
-import SearchBar from "../SearchBar/SearchBar";
-import MoonToggle from "../MoonToggle/MoonToggle";
-import useHoverSounds from "../HoverSounds/UseHoverSounds";
-
-//contexts
-import AppContext from "../../contexts/AppContext.js";
-
-const App = () => {
-  const [isNight, setIsNight] = useState(true);
-
-  //toggle theme change function
   const onThemeToggle = () => {
     setIsNight(!isNight);
     console.log(isNight);
