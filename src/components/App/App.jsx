@@ -7,8 +7,6 @@ import { useState } from "react";
 // Components
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
-import MoonToggle from "../MoonToggle/MoonToggle";
-import useHoverSounds from "../HoverSounds/UseHoverSounds";
 
 //contexts
 import AppContext from "../../contexts/AppContext.js";
