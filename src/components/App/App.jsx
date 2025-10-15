@@ -1,11 +1,75 @@
 //css
 import "./App.css";
+// Components
 
-//react
-import { useState } from "react";
+import Header from "../Header/Header";
+import MoviePopup from "../MoviePopup/MoviePopup";
+
+//Utils
+import { apiKey } from "../../utils/constants";
+import { getKeyword, getMovie } from "../../utils/moviesApi";
+
+//Hooks
+import { useEffect, useState } from "react";
+
+const App = () => {
+  const [movies, setMovies] = useState([]);
+  const [tag, setTag] = useState("");
+  const [tagsArray, setTagsArray] = useState([]);
+  const [movieGenerating, setMovieGenerating] = useState(false);
+
+  useEffect(() => {
+    if (!tagsArray.length) return;
+
+    const moviePromises = tagsArray.map((word) =>
+      getKeyword(word, apiKey)
+        .then((keywordData) => {
+          const keywordId = keywordData.results[0]?.id;
+          if (!keywordId) return [];
+          return getMovie(keywordId, apiKey)
+            .then((movieData) => movieData.results || [])
+            .catch(() => []);
+        })
+        .catch(console.error)
+    );
+
+    setMovieGenerating(true);
+
+    Promise.all(moviePromises)
+      .then((results) => {
+        const allMovies = results.flat();
+        console.log(allMovies);
+        setMovies(allMovies);
+        setMovieGenerating(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setMovieGenerating(false);
+      });
+  }, [tagsArray]);
+
+  function handleSearch(e) {
+    e.preventDefault();
+    if (!tag) return;
+    setMovieGenerating(true);
+
+    const words = tag.trim().split(/\s+/).filter(Boolean);
+
+    setTagsArray((prevTags) => [ ...prevTags, ...words]);
+    setTag("");
+  }
+
+  function handleDecline() {
+    setMovies((prevMovies) => prevMovies.slice(1));
+  }
+
+  function handleAccept() {
+    setMovies((prevMovies) => prevMovies.slice(1));
+  }
+
+
 
 // Components
-import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
 import MoonToggle from "../MoonToggle/MoonToggle";
 import useHoverSounds from "../HoverSounds/UseHoverSounds";
@@ -33,6 +97,7 @@ const App = () => {
           <Header />
           <SearchBar />
         </AppContext.Provider>
+
       </div>
     </div>
   );
