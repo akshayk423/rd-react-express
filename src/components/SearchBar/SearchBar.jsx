@@ -4,7 +4,7 @@ import plusWhite from "../../assets/icons/plus-icon-white.svg";
 import AppContext from "../../contexts/AppContext";
 import { useContext } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ handleSearch, tag, setTag, movieGenerating }) => {
   const { isNight } = useContext(AppContext);
 
   return (
@@ -13,6 +13,7 @@ const SearchBar = () => {
         className={`searchbar__form ${
           isNight ? "searchbar__form_type_night" : "searchbar__form_type_blood"
         }`}
+        onSubmit={handleSearch}
       >
         <input
           className={`searchbar__input ${
@@ -21,6 +22,8 @@ const SearchBar = () => {
               : "searchbar__input_type_blood"
           }`}
           type="text"
+          value={tag}
+          onChange={(e) => setTag(e.target.value)}
           placeholder="Type a keyword — slasher, actor, or decade — to summon your next horror recommendation."
         />
         <button className="searchbar__submit" type="submit">

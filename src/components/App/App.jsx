@@ -88,7 +88,19 @@ const App = () => {
       >
         <AppContext.Provider value={{ isNight, onThemeToggle }}>
           <Header />
-          <SearchBar />
+          <SearchBar
+            handleSearch={handleSearch}
+            tag={tag}
+            setTag={setTag}
+            movieGenerating={movieGenerating}
+          />
+          {movies.length > 0 && (
+            <MoviePopup
+              movies={movies}
+              onDecline={handleDecline}
+              onAccept={handleAccept}
+            />
+          )}
         </AppContext.Provider>
       </div>
     </div>
