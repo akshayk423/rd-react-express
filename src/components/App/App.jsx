@@ -42,8 +42,10 @@ const App = () => {
         setMovies(allMovies);
         setMovieGenerating(false);
       })
-      .catch(console.error);
-    setMovieGenerating(false);
+      .catch((err) => {
+        console.error(err);
+        setMovieGenerating(false);
+      });
   }, [tagsArray]);
 
   function handleSearch(e) {
@@ -53,7 +55,7 @@ const App = () => {
 
     const words = tag.trim().split(/\s+/).filter(Boolean);
 
-    setTagsArray(words);
+    setTagsArray((prevTags) => [ ...prevTags, ...words]);
     setTag("");
   }
 
