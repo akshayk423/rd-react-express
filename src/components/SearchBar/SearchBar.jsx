@@ -17,12 +17,23 @@ const SearchBar = () => {
     }
   };
 
+  const handleDelete = (indexToDelete) => {
+    setSearchTerms(searchTerms.filter((_, index) => index !== indexToDelete));
+  };
+
   return (
     <div className="searchbar">
       <div className="searchbar__terms">
         {searchTerms.map((term, index) => (
           <span key={index} className="searchbar__term">
             {term}
+            <button
+              className="searchbar__term-delete"
+              onClick={() => handleDelete(index)}
+              aria-label={`Delete ${term}`}
+            >
+              x
+            </button>
           </span>
         ))}
       </div>

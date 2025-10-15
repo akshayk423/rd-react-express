@@ -14,11 +14,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
   position: relative;
 }
 
-.searcbar__form_type_night {
+.searchbar__form_type_night {
   background: #fff;
 }
 
@@ -27,29 +26,36 @@
   height: 95%;
   border: none;
   border-radius: 18px;
-  padding: 0 0 0 5px;
+  padding: 0 44px 0 5px;
 }
 
 .searchbar__terms {
-  width: 100%;
+  width: 48%;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 16px;
-  padding: 0 16px;
   position: absolute;
-  bottom: 100%;
-  left: 0;
 }
 
 .searchbar__term {
   background: rgba(255, 255, 255, 0.1);
   padding: 4px 12px;
-  border-radius: 16px;
+  border-radius: 8px;
   color: #fff;
   font-size: 14px;
-  line-height: 20px;
   margin-bottom: 8px;
+}
+
+.searchbar__term-delete {
+  background: transparent;
+  border-style: none;
+  color: #fff;
+  margin-left: 17px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 0;
+  margin: 0 0 0 15px;
 }
 
 .searchbar__submit {
@@ -63,7 +69,7 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 60px;
+  right: 10px;
 }
 
 .searchbar__input::placeholder {
