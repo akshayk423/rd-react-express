@@ -8,7 +8,6 @@ import MoviePopup from "../MoviePopup/MoviePopup";
 //Utils
 import { apiKey } from "../../utils/constants";
 import { getKeyword, getMovie } from "../../utils/moviesApi";
-import { checkResponse } from "../../utils/api";
 
 //Hooks
 import { useEffect, useState } from "react";
