@@ -9,28 +9,39 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
-  const navigate = useNavigate();
-  const menuItems = [
-    {
-      label: "View recommendations",
-      onClick: () => {
-        //need to route to recommendations page//
-        navigate("/view-recommendations");
-      },
-    },
-    {
-      label: "Sign Out",
-      onClick: () => {
-        //need to handle sign out//
-        console.log("Sign Out clicked");
-      },
-    },
-    { label: "Back Home", onClick: () => navigate("/") },
-  ];
-
   const contextData = useContext(AppContext);
   const isNight = contextData.isNight;
 
+  const navigate = useNavigate();
+  const menuItems = contextData.currentUser
+    ? [
+        {
+          label: "View recommendations",
+          onClick: () => {
+            //need to route to recommendations page//
+            navigate("/rd-react-express/view-recommendations");
+          },
+        },
+        {
+          label: "Sign Out",
+          onClick: () => {
+            //need to handle sign out//
+            contextData.setCurrentUser(null);
+            navigate("/rd-react-express/");
+          },
+        },
+        { label: "Home", onClick: () => navigate("/rd-react-express/") },
+      ]
+    : [
+        {
+          label: "Login/Register",
+          onClick: () => {
+            //need to handle sign out//
+            navigate("/rd-react-express/login");
+          },
+        },
+        { label: "Home", onClick: () => navigate("/rd-react-express/") },
+      ];
   return (
     <div className="header__content">
       <Dropdown

@@ -8,17 +8,20 @@ import { getKeyword, getMovie, getMovieDetails } from "../../utils/moviesApi";
 //Hooks
 import { useEffect, useState } from "react";
 
+//Routes
+import { Routes, Route } from "react-router-dom";
+
 // Components
 import Main from "../Main/Main.jsx";
 import Header from "../Header/Header";
-import Login from "../Login/Login.jsx";
+import PosterModal from "../PosterModal/PosterModal.jsx";
 
 //contexts
 import AppContext from "../../contexts/AppContext.js";
+import Login from "../Login/Login.jsx";
 
 const App = () => {
   const [isNight, setIsNight] = useState(true);
-
   const [movies, setMovies] = useState([]);
   const [tag, setTag] = useState("");
   const [tagsArray, setTagsArray] = useState([]);
@@ -104,6 +107,7 @@ const App = () => {
     getMovieDetails(movie.id, apiKey)
       .then((data) => {
         setSelectedMovie(data);
+        console.log(data);
         setIsModalOpen(true);
       })
       .catch(console.error);
@@ -133,22 +137,45 @@ const App = () => {
         <AppContext.Provider
           value={{ isNight, onThemeToggle, currentUser, setCurrentUser }}
         >
-          <Header />
+          <Routes>
+            <Route
+              path={"/rd-react-express/"}
+              element={
+                <>
+                  <Header />
 
-          <Main
-            onSubmit={handleSearch}
-            setTag={setTag}
-            tag={tag}
-            handleAccept={handleAccept}
-            handleDecline={handleDecline}
-            movies={movies}
-            tagsArray={tagsArray}
-            handleDeleteTag={handleDeleteTag}
-            onClick={handlePosterClick}
-          />
-          <Login />
+                  <Main
+                    onSubmit={handleSearch}
+                    setTag={setTag}
+                    tag={tag}
+                    handleAccept={handleAccept}
+                    handleDecline={handleDecline}
+                    movies={movies}
+                    tagsArray={tagsArray}
+                    handleDeleteTag={handleDeleteTag}
+                    onClick={handlePosterClick}
+                  />
+                </>
+              }
+            />
+
+            <Route
+              path={"/rd-react-express/login"}
+              element={
+                <>
+                  <Header />
+                  <Login />
+                </>
+              }
+            />
+          </Routes>
+
           {selectedMovie && (
-            <results movie={selectedMovie} onClose={closePosterModal} />
+            <PosterModal
+              movie={selectedMovie}
+              onClose={closePosterModal}
+              isModalOpen={isModalOpen}
+            />
           )}
         </AppContext.Provider>
       </div>

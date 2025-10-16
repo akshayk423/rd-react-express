@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import AppContext from "../../contexts/AppContext.js";
 import { loginUser, registerUser } from "../../utils/userApi.js";
+import "./Login.css";
 
 const Login = () => {
   const { setCurrentUser, setToken } = useContext(AppContext);
@@ -36,11 +37,12 @@ const Login = () => {
   };
 
   return (
-    <div className="auth">
-      <form className="auth__form" onSubmit={handleSubmit}>
-        <h2>{isLogin ? "Login" : "Sign Up"}</h2>
+    <div className="login">
+      <form className="login__form" onSubmit={handleSubmit}>
+        <h2 className="login__title">{isLogin ? "Login" : "Sign Up"}</h2>
 
         <input
+          className="login__input"
           type="text"
           placeholder="Username"
           value={username}
@@ -48,6 +50,7 @@ const Login = () => {
           required
         />
         <input
+          className="login__input"
           type="password"
           placeholder="Password"
           value={password}
@@ -55,22 +58,23 @@ const Login = () => {
           required
         />
 
-        {error && <p className="auth__error">{error}</p>}
-
-        <button type="submit" className="auth__btn">
-          {isLogin ? "Login" : "Create Account"}
-        </button>
-
-        <p className="auth__toggle">
-          {isLogin ? "Don’t have an account?" : "Already have one?"}{" "}
-          <button
-            type="button"
-            onClick={() => setIsLogin(!isLogin)}
-            className="auth__toggle-btn"
-          >
-            {isLogin ? "Sign Up" : "Log In"}
+        {error && <p className="login__error">{error}</p>}
+        <div className="login__footer">
+          <button type="submit" className="login__btn">
+            {isLogin ? "Login" : "Create Account"}
           </button>
-        </p>
+
+          <p className="login__toggle">
+            {isLogin ? "Don’t have an account?" : "Already have one?"}{" "}
+            <button
+              type="button"
+              onClick={() => setIsLogin(!isLogin)}
+              className="login__btn"
+            >
+              {isLogin ? "Sign Up" : "Log In"}
+            </button>
+          </p>
+        </div>
       </form>
     </div>
   );
