@@ -2,6 +2,7 @@ import "./Main.css";
 import SearchBar from "../SearchBar/SearchBar";
 import MoviePopup from "../MoviePopup/MoviePopup";
 import TagSection from "../TagSection/TagSection";
+import Results from "../Results/Results";
 
 const Main = ({
   onSubmit,
@@ -27,6 +28,7 @@ const Main = ({
           onAccept={handleAccept}
         />
       )}
+      <Results movies={movies} />
     </div>
   );
 };
