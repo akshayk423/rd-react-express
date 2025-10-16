@@ -25,36 +25,42 @@ const App = () => {
   const [likeMovies, setLikedMovies] = useState([]);
 
   useEffect(() => {
-    if (!tagsArray.length) return;
+  if (!tagsArray.length) return;
 
-    const moviePromises = tagsArray.map((word) =>
-      getKeyword(word, apiKey)
-        .then((keywordData) => {
-          const keywordId = keywordData.results[0]?.id;
-          if (!keywordId) return [];
-          return getMovie(keywordId, apiKey)
-            .then((movieData) => movieData.results || [])
-            .catch(() => []);
+  setMovieGenerating(true);
+
+  // Step 1: get all keyword IDs for the tags
+  Promise.all(tagsArray.map((word) => getKeyword(word, apiKey)))
+    .then((keywordResults) => {
+      const keywordIds = keywordResults
+        .map((data) => data.results?.[0]?.id)
+        .filter(Boolean)
+        .join(",");
+
+      if (!keywordIds) {
+        setMovies([]);
+        setMovieGenerating(false);
+        return;
+      }
+
+      // Step 2: Fetch multiple pages for the combined keyword search
+      const pages = [1, 2, 3].map((page) =>
+        getMovie(keywordIds, apiKey, page)
+      );
+
+      return Promise.all(pages)
+        .then((pageResults) => {
+          // Flatten results from all pages
+          const allMovies = pageResults.flatMap((p) => p.results || []);
+          setMovies(allMovies);
         })
-        .catch(console.error)
-    );
-
-    setMovieGenerating(true);
-
-    Promise.all(moviePromises)
-      .then((results) => {
-        const allMovies = results.flat();
-        console.log(allMovies);
-        setMovies(allMovies);
-        setMovieGenerating(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setMovieGenerating(false);
-      });
-
-    console.log(tagsArray);
-  }, [tagsArray]);
+        .finally(() => setMovieGenerating(false));
+    })
+    .catch((err) => {
+      console.error(err);
+      setMovieGenerating(false);
+    });
+}, [tagsArray]);
 
   function handleSearch(e) {
     e.preventDefault();
