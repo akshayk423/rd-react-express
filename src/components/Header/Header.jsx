@@ -6,14 +6,16 @@ import avatarDark from "../../assets/icons/avatar-dark.png";
 import MoonToggle from "../MoonToggle/MoonToggle";
 import AppContext from "../../contexts/AppContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   const menuItems = [
     {
       label: "View recommendations",
       onClick: () => {
         //need to route to recommendations page//
-        console.log("View recommendations clicked");
+        navigate("/view-recommendations");
       },
     },
     {
@@ -23,6 +25,7 @@ function Header() {
         console.log("Sign Out clicked");
       },
     },
+    { label: "Back Home", onClick: () => navigate("/") },
   ];
 
   const contextData = useContext(AppContext);
@@ -31,11 +34,15 @@ function Header() {
   return (
     <div className="header__content">
       <Dropdown
-        items={menuItems}
         trigger={
-          <img src={avatar} className="header__avatar" alt="User Avatar" />
+          <img
+            src={`${isNight ? avatar : avatarDark}`}
+            className="header__avatar"
+          />
         }
+        items={menuItems}
       />
+
       <img src={title} className="page__title" />
       <MoonToggle />
     </div>
