@@ -30,7 +30,6 @@ function Header() {
             navigate("/rd-react-express/");
           },
         },
-        { label: "Home", onClick: () => navigate("/rd-react-express/") },
       ]
     : [
         {
@@ -54,7 +53,11 @@ function Header() {
         items={menuItems}
       />
 
-      <img src={title} className="page__title" />
+      <img
+        src={title}
+        className="page__title"
+        onClick={() => navigate("/rd-react-express")}
+      />
       <MoonToggle />
     </div>
   );
