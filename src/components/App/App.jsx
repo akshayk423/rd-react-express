@@ -22,6 +22,7 @@ const App = () => {
   const [tag, setTag] = useState("");
   const [tagsArray, setTagsArray] = useState([]);
   const [movieGenerating, setMovieGenerating] = useState(false);
+  const [likeMovies, setLikedMovies] = useState([]);
 
   useEffect(() => {
     if (!tagsArray.length) return;
