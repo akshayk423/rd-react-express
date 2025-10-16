@@ -1,6 +1,6 @@
 import "./TagSection.css";
 
-const TagSection = ({ tags }) => {
+const TagSection = ({ tags, handleDeleteTag }) => {
   console.log(tags);
   if (!tags?.length) return null;
   return (
@@ -8,7 +8,11 @@ const TagSection = ({ tags }) => {
       {tags.map((tag, i) => (
         <span key={i} className="tags-container__tag">
           {tag}
-          <button type="button" className="tags-container__tag-delete-btn">
+          <button
+            type="button"
+            onClick={() => handleDeleteTag(tag)}
+            className="tags-container__tag-delete-btn"
+          >
             X
           </button>
         </span>

@@ -11,6 +11,7 @@ const Main = ({
   handleDecline,
   movies,
   tagsArray,
+  handleDeleteTag,
 }) => {
   const handleSubmit = (e) => {
     onSubmit(e);
@@ -18,7 +19,7 @@ const Main = ({
 
   return (
     <div className="main__content">
-      <TagSection tags={tagsArray} />
+      <TagSection tags={tagsArray} handleDeleteTag={handleDeleteTag} />
       <SearchBar onSubmit={(e) => onSubmit(e)} setTag={setTag} tag={tag} />
       {movies.length > 0 && (
         <MoviePopup

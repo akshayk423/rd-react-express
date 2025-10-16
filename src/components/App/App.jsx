@@ -95,6 +95,10 @@ const App = () => {
     setIsNight(!isNight);
   };
 
+  const handleDeleteTag = (deleteTag) => {
+    setTagsArray((prevTags) => prevTags.filter((tag) => tag !== deleteTag));
+  };
+
   return (
     <div className="page">
       <div
@@ -112,6 +116,7 @@ const App = () => {
             handleDecline={handleDecline}
             movies={movies}
             tagsArray={tagsArray}
+            handleDeleteTag={handleDeleteTag}
           />
         </AppContext.Provider>
       </div>
