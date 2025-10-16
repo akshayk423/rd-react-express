@@ -1,15 +1,9 @@
 //css
 import "./App.css";
-
 // Components
-import SearchBar from "../SearchBar/SearchBar";
-import MoonToggle from "../MoonToggle/MoonToggle";
-import useHoverSounds from "../HoverSounds/UseHoverSounds";
+
 import Header from "../Header/Header";
 import MoviePopup from "../MoviePopup/MoviePopup";
-
-//Context
-import AppContext from "../../contexts/AppContext.js";
 
 //Utils
 import { apiKey } from "../../utils/constants";
@@ -18,12 +12,21 @@ import { getKeyword, getMovie } from "../../utils/moviesApi";
 //Hooks
 import { useEffect, useState } from "react";
 
+// Components
+import SearchBar from "../SearchBar/SearchBar";
+import MoonToggle from "../MoonToggle/MoonToggle";
+import useHoverSounds from "../HoverSounds/UseHoverSounds";
+import Main from "../Main/Main.jsx";
+//contexts
+import AppContext from "../../contexts/AppContext.js";
+
 const App = () => {
+  const [isNight, setIsNight] = useState(true);
+
   const [movies, setMovies] = useState([]);
   const [tag, setTag] = useState("");
   const [tagsArray, setTagsArray] = useState([]);
   const [movieGenerating, setMovieGenerating] = useState(false);
-  const [isNight, setIsNight] = useState(true);
 
   useEffect(() => {
     if (!tagsArray.length) return;
@@ -53,16 +56,33 @@ const App = () => {
         console.error(err);
         setMovieGenerating(false);
       });
+
+    console.log(tagsArray);
   }, [tagsArray]);
 
   function handleSearch(e) {
     e.preventDefault();
-    if (!tag) return;
+    if (!tag.trim()) return;
+
     setMovieGenerating(true);
 
-    const words = tag.trim().split(/\s+/).filter(Boolean);
+    // Match quoted phrases OR comma/semicolon separated tags
+    const tagMatches = tag.match(/"[^"]+"|[^,;]+/g) || [];
+    const words = tagMatches
+      .map((t) =>
+        t
+          .replace(/"/g, "")
+          .trim()
+          .replace(/\s{2,}/g, " ")
+      ) // remove quotes & collapse extra spaces
+      .filter(Boolean);
 
-    setTagsArray((prevTags) => [...prevTags, ...words]);
+    // Merge tags, avoid duplicates
+    setTagsArray((prevTags) => {
+      const updated = [...new Set([...prevTags, ...words])];
+      return updated;
+    });
+
     setTag("");
   }
 
@@ -74,9 +94,9 @@ const App = () => {
     setMovies((prevMovies) => prevMovies.slice(1));
   }
 
+  //toggle theme change function
   const onThemeToggle = () => {
     setIsNight(!isNight);
-    console.log(isNight);
   };
 
   return (
@@ -88,19 +108,15 @@ const App = () => {
       >
         <AppContext.Provider value={{ isNight, onThemeToggle }}>
           <Header />
-          <SearchBar
-            handleSearch={handleSearch}
-            tag={tag}
+          <Main
+            onSubmit={handleSearch}
             setTag={setTag}
-            movieGenerating={movieGenerating}
+            tag={tag}
+            handleAccept={handleAccept}
+            handleDecline={handleDecline}
+            movies={movies}
+            tagsArray={tagsArray}
           />
-          {movies.length > 0 && (
-            <MoviePopup
-              movies={movies}
-              onDecline={handleDecline}
-              onAccept={handleAccept}
-            />
-          )}
         </AppContext.Provider>
       </div>
     </div>

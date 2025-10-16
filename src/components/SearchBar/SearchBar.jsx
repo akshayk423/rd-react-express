@@ -4,8 +4,14 @@ import plusWhite from "../../assets/icons/plus-icon-white.svg";
 import AppContext from "../../contexts/AppContext";
 import { useContext } from "react";
 
-const SearchBar = ({ handleSearch, tag, setTag, movieGenerating }) => {
+const SearchBar = ({ onSubmit, setTag, tag }) => {
   const { isNight } = useContext(AppContext);
+
+  // Optional: local handler to ensure preventDefault() runs before parent handler
+  const handleSubmit = (e) => {
+    e.preventDefault(); // prevents reload
+    onSubmit(e); // calls App's handleSearch()
+  };
 
   return (
     <div className="searchbar">
@@ -13,7 +19,7 @@ const SearchBar = ({ handleSearch, tag, setTag, movieGenerating }) => {
         className={`searchbar__form ${
           isNight ? "searchbar__form_type_night" : "searchbar__form_type_blood"
         }`}
-        onSubmit={handleSearch}
+        onSubmit={handleSubmit}
       >
         <input
           className={`searchbar__input ${
@@ -22,9 +28,10 @@ const SearchBar = ({ handleSearch, tag, setTag, movieGenerating }) => {
               : "searchbar__input_type_blood"
           }`}
           type="text"
+          placeholder="Search something horror related..."
           value={tag}
-          onChange={(e) => setTag(e.target.value)}
-          placeholder="Type a keyword — slasher, actor, or decade — to summon your next horror recommendation."
+          name="tag"
+          onChange={(e) => setTag(e.target.value)} // controlled input
         />
         <button className="searchbar__submit" type="submit">
           <img
