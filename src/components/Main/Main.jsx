@@ -2,7 +2,6 @@ import "./Main.css";
 import SearchBar from "../SearchBar/SearchBar";
 import MoviePopup from "../MoviePopup/MoviePopup";
 import TagSection from "../TagSection/TagSection";
-import Results from "../Results/Results";
 
 const Main = ({
   onSubmit,
@@ -13,11 +12,8 @@ const Main = ({
   movies,
   tagsArray,
   handleDeleteTag,
+  onClick,
 }) => {
-  const handleSubmit = (e) => {
-    onSubmit(e);
-  };
-
   return (
     <div className="main__content">
       <TagSection tags={tagsArray} handleDeleteTag={handleDeleteTag} />
@@ -27,9 +23,9 @@ const Main = ({
           movies={movies}
           onDecline={handleDecline}
           onAccept={handleAccept}
+          onClick={onClick}
         />
       )}
-      <Results movies={movies} />
     </div>
   );
 };
