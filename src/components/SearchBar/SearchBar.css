@@ -11,7 +11,6 @@
   transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
-/* 🌙 Night Mode */
 .searchbar__form_type_night {
   background: #fff;
 }
@@ -24,7 +23,6 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-/* 🩸 Blood Mode */
 .searchbar__form_type_blood {
   background: #000;
   border: 1px solid #fff;
@@ -39,13 +37,11 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* 🔥 Glowing red when focused */
 .searchbar__form_type_blood:focus-within {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5),
     0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-/* 🌕 Soft moonlight glow when focused */
 .searchbar__form_type_night:focus-within {
   box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.5), 0 0 15px rgba(255, 0, 0, 0.3);
 }

@@ -1,9 +1,5 @@
 //css
 import "./App.css";
-// Components
-
-import Header from "../Header/Header";
-import MoviePopup from "../MoviePopup/MoviePopup";
 
 //Utils
 import { apiKey } from "../../utils/constants";
@@ -13,10 +9,9 @@ import { getKeyword, getMovie } from "../../utils/moviesApi";
 import { useEffect, useState } from "react";
 
 // Components
-import SearchBar from "../SearchBar/SearchBar";
-import MoonToggle from "../MoonToggle/MoonToggle";
-import useHoverSounds from "../HoverSounds/UseHoverSounds";
 import Main from "../Main/Main.jsx";
+import Header from "../Header/Header";
+
 //contexts
 import AppContext from "../../contexts/AppContext.js";
 
